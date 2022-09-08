@@ -36,7 +36,7 @@ Each plot below were generated with 100 populations with an allele frequency p o
   * **makes populations different**, even if the pop are identical at the beginning;
   * **Fixation** of an allele without natural selection.
 
-```{r}
+```{r wf_simulation_varying_n}
 par(mfrow = c(2,2), mar = c(4,4,3,1))
 nsim = 100 # number of replicate populations
 ngen = 500 # number of generations 
@@ -48,9 +48,25 @@ wf.simulation.n.200 = wf.drift(N = 200,   p = pstart, N.gen = ngen, N.sim = nsim
 wf.simulation.n.2000 = wf.drift(N = 2000, p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
 ```
 
+```{r fixation_var_n, echo=FALSE, results='hide'}
+fix.rate.2 = fixation(wf.simulation.n.2)$fixation.rate
+fix.rate.20 = fixation(wf.simulation.n.20)$fixation.rate
+fix.rate.200 = fixation(wf.simulation.n.200)$fixation.rate
+fix.rate.2000 = fixation(wf.simulation.n.2000)$fixation.rate
+
+mfix.2 = fixation(wf.simulation.n.2)$mean.fix
+mfix.20 = fixation(wf.simulation.n.20)$mean.fix
+mfix.200 = fixation(wf.simulation.n.200)$mean.fix
+mfix.2000 = fixation(wf.simulation.n.2000)$mean.fix
+```
+
+The rate at which the alleles are fixed in these population is `r fix.rate.2` %, `r fix.rate.20` %, `r fix.rate.200` %, `r fix.rate.2000` % for the 2, 20, 200, 2000 individuals respectively. 
+
+The mean generation at which there is fixation is `r round(mfix.2,2)`, `r round(mfix.20,2)`, `r round(mfix.200,2)`, `r round(mfix.2000,2)` for the 2, 20, 200, 2000 individuals respectively (if NaN, it means that it was never fixed). 
+
 We can play the same game but keeping the number of individuals constant (here 20), but changing the allele frequency at the start of the simulation. 
 
-```{r}
+```{r wf_simulation_n_low_varying_p}
 par(mfrow = c(2,2), mar = c(4,4,3,1))
 nid = 20
 wf.simulation.n.20.p.1 = wf.drift(N = nid, p = .1, N.gen = ngen, N.sim = nsim, seed = seed)
@@ -59,9 +75,26 @@ wf.simulation.n.20.p.5 = wf.drift(N = nid, p = .5, N.gen = ngen, N.sim = nsim, s
 wf.simulation.n.20.p.9 = wf.drift(N = nid, p = .9, N.gen = ngen, N.sim = nsim, seed = seed)
 ```
 
+```{r fixation_n_low_var_p, echo=FALSE, results='hide'}
+fix.rate.20.p.1 = fixation(wf.simulation.n.20.p.1)$fixation.rate
+fix.rate.20.p.3 = fixation(wf.simulation.n.20.p.3)$fixation.rate
+fix.rate.20.p.5 = fixation(wf.simulation.n.20.p.5)$fixation.rate
+fix.rate.20.p.9 = fixation(wf.simulation.n.20.p.9)$fixation.rate
+
+mfix.20.p.1 = fixation(wf.simulation.n.20.p.1)$mean.fix
+mfix.20.p.3 = fixation(wf.simulation.n.20.p.3)$mean.fix
+mfix.20.p.5 = fixation(wf.simulation.n.20.p.5)$mean.fix
+mfix.20.p.9 = fixation(wf.simulation.n.20.p.9)$mean.fix
+```
+
+The rate at which the alleles are fixed in these population is `r fix.rate.20.p.1` %, `r fix.rate.20.p.3` %, `r fix.rate.20.p.5` %, `r fix.rate.20.p.9` % for 20 individuals, but an starting allele frequency $p$ of 0.1, 0.3, 0.5, and 0.9 respectively. 
+
+The mean generation at which there is fixation is `r round(mfix.20.p.1,2)`, `r round(mfix.20.p.3,2)`, `r round(mfix.20.p.5,2)`, `r round(mfix.20.p.9,2)` for 20 individuals, but an starting allele frequency $p$ of 0.1, 0.3, 0.5, and 0.9 respectively (if NaN, it means that it was never fixed). 
+
+
 This is the same as the previous set of plots, but the number of individuals was increased to 1000. 
 
-```{r}
+```{r wf_simulation_n_hgh_varying_p}
 par(mfrow = c(2,2), mar = c(4,4,3,1))
 nid = 1e4
 wf.simulation.n.1e4.p.1 = wf.drift(N = nid, p = .1, N.gen = ngen, N.sim = nsim, seed = seed)
@@ -69,6 +102,23 @@ wf.simulation.n.1e4.p.3 = wf.drift(N = nid, p = .3, N.gen = ngen, N.sim = nsim, 
 wf.simulation.n.1e4.p.5 = wf.drift(N = nid, p = .5, N.gen = ngen, N.sim = nsim, seed = seed)
 wf.simulation.n.1e4.p.9 = wf.drift(N = nid, p = .9, N.gen = ngen, N.sim = nsim, seed = seed)
 ```
+
+```{r fixation_n_hgh_var_p, echo=FALSE, results='hide'}
+fix.rate.1e4.p.1 = fixation(wf.simulation.n.1e4.p.1)$fixation.rate
+fix.rate.1e4.p.3 = fixation(wf.simulation.n.1e4.p.3)$fixation.rate
+fix.rate.1e4.p.5 = fixation(wf.simulation.n.1e4.p.5)$fixation.rate
+fix.rate.1e4.p.9 = fixation(wf.simulation.n.1e4.p.9)$fixation.rate
+
+mfix.1e4.p.1 = fixation(wf.simulation.n.1e4.p.1)$mean.fix
+mfix.1e4.p.3 = fixation(wf.simulation.n.1e4.p.3)$mean.fix
+mfix.1e4.p.5 = fixation(wf.simulation.n.1e4.p.5)$mean.fix
+mfix.1e4.p.9 = fixation(wf.simulation.n.1e4.p.9)$mean.fix
+```
+
+The rate at which the alleles are fixed in these population is `r fix.rate.1e4.p.1` %, `r fix.rate.1e4.p.3` %, `r fix.rate.1e4.p.5` %, `r fix.rate.1e4.p.9` % for 10,000 individuals, but an starting allele frequency $p$ of 0.1, 0.3, 0.5, and 0.9 respectively. 
+
+The mean generation at which there is fixation is `r round(mfix.1e4.p.1,2)`, `r round(mfix.1e4.p.3,2)`, `r round(mfix.1e4.p.5,2)`, `r round(mfix.1e4.p.9,2)` for 10,000 individuals, but an starting allele frequency $p$ of 0.1, 0.3, 0.5, and 0.9 respectively (if NaN, it means that it was never fixed). 
+
 
 # Hardy-Weinberg principle
 

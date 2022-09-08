@@ -68,6 +68,26 @@ wf.drift <- function(N = 20, # Nb of diploid individuals
 # wf.drift()
 
 
+# Fixation rate for WF model ----------------------------------------------
+fixation <- function(wf.sim) {
+  # Find the alleles that are fixated (1 or 0)
+  fixated = apply(wf.sim, 2, function(x) which(x==1 | x == 0)[1])
+  
+  # Percentage of fixation rate (100% means that the allele was fixated in all replicate population)
+  fixation.rate = length(which(!is.na(fixated)))/ncol(wf.sim)*100
+  
+  # Mean number of generations to fixation (is no fixation, will return NA)
+  mean.fix = mean(fixated, na.rm = TRUE)
+  # if(is.na(mean.fix)) {mean.fix = "> max number of generations"}
+  
+  # Return each value in a list 
+  return(list(fixated = fixated, 
+              fixation.rate = fixation.rate, 
+              mean.fix = mean.fix ))
+}
+
+# Usage 
+# fixation(wf.drift())
 
 
 # Calculate expected genotype frequencies ---------------------------------
@@ -89,4 +109,5 @@ h.p.2pq.q = function(p) { # p is a frequency from 0 to 1
 
 # Usage
 # h.p.2pq.q(.5)
+
 
