@@ -1,5 +1,5 @@
 ---
-title: "Wright-Fisher model simulation"
+title: "Wright-Fisher model and Hardy-Weinberg principle simulation"
 author: "Marc-Olivier Beausoleil"
 date: "`r Sys.Date()`"
 output:
@@ -14,18 +14,22 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 ```
 
 ```{r prepare_R, echo = FALSE, warning=FALSE, results='hide'}
-source("../scripts/0.initialize.R")
+suppressMessages(source("../scripts/0.initialize.R"))
 
 # load the functions
 source("../scripts/WF_genetic_drift_simulation.R")
 ```
 
+# Introduction 
+
+Population genetics is a field of study interested in the precise mechanisms describing evolutionary processes [@hartl_principles_2007]. Of the 'big five' evolutionary processes (mutation, natural selection, gene flow, mating patterns, genetic drift), genetic drift can be expressed with the Wright-Fisher model which 'isolates' only the effect of genetic drift. In this report, we will explore the Wright-Fisher model showing genetic drift and another important basic principle in population genetics: what happens to genotype frequencies when there is no evolution (Hardy-Weinberg principle)!  
+
 # The Wright-Fisher Model
 
-Population genetics is a field of study interested in the precise mechanisms describing evolutionary processes [@hartl_principles_2007]. Of the 'big five' evolutionary processes (mutation, natural selection, gene flow, mating patterns, genetic drift), genetic drift can be expressed with the Wright-Fisher model which 'isolates' only the effect of genetic drift. 
-
 Here is an example of simulation that was made in `R` to show genetic drift without natural selection. The same script, or function, can be used to generate patterns like these, but by varying the parameters (population sizes or starting alleles). 
-- Each plot below were generated with 100 populations with an allele frequency p of 50% (so q = 0.5) as an initial condition. The only thing that varies from the 4 plots is the number of individuals within each population (note that the random seed is always the same). We can see now see with the simulation that 
+
+Each plot below were generated with 100 populations with an allele frequency p of 50% (so q = 0.5) as an initial condition. The only thing that varies from the 4 plots is the number of individuals within each population (note that the random seed is always the same). We can see now see with the simulation that: 
+
   * No **particular** allele will be fixated (unbiased);
   * the **number of individuals** seems an important factor in the fixation of alleles. The fluctuations in allele frequency are larger in smaller populations;
   * some genetic variation can be **lost**;
@@ -38,10 +42,10 @@ nsim = 100 # number of replicate populations
 ngen = 500 # number of generations 
 pstart = 0.5 # Allele frequency at start 
 seed = 1245
-wf.simulation.n.2 = wf.drift(N = 2,   p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
-wf.simulation.n.20 = wf.drift(N = 20,  p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
-wf.simulation.n.200 = wf.drift(N = 200, p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
-wf.simulation.n.2000 = wf.drift(N = 2000,p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
+wf.simulation.n.2 = wf.drift(N = 2,       p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
+wf.simulation.n.20 = wf.drift(N = 20,     p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
+wf.simulation.n.200 = wf.drift(N = 200,   p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
+wf.simulation.n.2000 = wf.drift(N = 2000, p = pstart, N.gen = ngen, N.sim = nsim, seed = seed)
 ```
 
 We can play the same game but keeping the number of individuals constant (here 20), but changing the allele frequency at the start of the simulation. 
@@ -69,6 +73,15 @@ wf.simulation.n.1e4.p.9 = wf.drift(N = nid, p = .9, N.gen = ngen, N.sim = nsim, 
 # Hardy-Weinberg principle
 
 Genotype frequencies is important measure in populations to understand if any evolutionary mechanism it at play [@hahn_molecular_2018]. A simple mathematical model was developed in 1908 to infer the genotype frequencies based on the allele frequency in a population [@hardy_mendelian_1908; @weinberg_uber_1908].
+
+In a nutshell, here is Hardy-Weinberg's principle: 
+
+$$ 1 = p + q \\ 
+1^2 = (p + q)^2 \\ 
+1 = (p + q)(p + q) \\
+1 = p^2 + 2pq + q^2$$
+
+Where $p$ is is $A$ allele frequency and $q$ is the $a$ allele frequency. The frequency of genotypes $AA$, $Aa$ and $aa$ are given by $p^2$, $2pq$, and $q^2$ respectively. 
 
 ```{r hardy_weinber_principle, fig.width=7, fig.height=5}
 par(mfrow = c(1,1), mar = c(4,4,3,1))
@@ -101,24 +114,31 @@ legend(x = .5,
 
 # Saving the data
 
-Here I'm exporting all the simulated data generated. 
+Here the data from all simulations are exported for future reference. 
 
 ```{r export_data}
-save(wf.simulation.n.2,
-     wf.simulation.n.20,
-     wf.simulation.n.200,
-     wf.simulation.n.2000,
-     wf.simulation.n.20.p.1,
-     wf.simulation.n.20.p.3,
-     wf.simulation.n.20.p.5,
-     wf.simulation.n.20.p.9,
-     wf.simulation.n.1e4.p.1,
-     wf.simulation.n.1e4.p.3,
-     wf.simulation.n.1e4.p.5,
-     wf.simulation.n.1e4.p.9, 
-     file = "../data/wf_simulation.RData")
+path.n = "../data/WF_model/sim.n"
+dir.create(path.n, showWarnings = FALSE)
+write.csv(wf.simulation.n.2,       file = file.path(path.n,"wf.simulation.n.2.csv"),       row.names = FALSE)
+write.csv(wf.simulation.n.20,      file = file.path(path.n,"wf.simulation.n.20.csv"),      row.names = FALSE)
+write.csv(wf.simulation.n.200,     file = file.path(path.n,"wf.simulation.n.200.csv"),     row.names = FALSE)
+write.csv(wf.simulation.n.2000,    file = file.path(path.n,"wf.simulation.n.2000.csv"),    row.names = FALSE)
 
-save(dat.hw, file = "../data/hw_simulation.RData")
+path.n.l.p = "../data/WF_model/sim.n.low.p"
+dir.create(path.n.l.p, showWarnings = FALSE)
+write.csv(wf.simulation.n.20.p.1,  file = file.path(path.n.l.p,"wf.simulation.n.20.p.1.csv"),  row.names = FALSE)
+write.csv(wf.simulation.n.20.p.3,  file = file.path(path.n.l.p,"wf.simulation.n.20.p.3.csv"),  row.names = FALSE)
+write.csv(wf.simulation.n.20.p.5,  file = file.path(path.n.l.p,"wf.simulation.n.20.p.5.csv"),  row.names = FALSE)
+write.csv(wf.simulation.n.20.p.9,  file = file.path(path.n.l.p,"wf.simulation.n.20.p.9.csv"),  row.names = FALSE)
+
+path.n.h.p = "../data/WF_model/sim.n.hgh.p"
+dir.create(path.n.h.p, showWarnings = FALSE)
+write.csv(wf.simulation.n.1e4.p.1, file = file.path(path.n.h.p,"wf.simulation.n.1e4.p.1.csv"), row.names = FALSE)
+write.csv(wf.simulation.n.1e4.p.3, file = file.path(path.n.h.p,"wf.simulation.n.1e4.p.3.csv"), row.names = FALSE)
+write.csv(wf.simulation.n.1e4.p.5, file = file.path(path.n.h.p,"wf.simulation.n.1e4.p.5.csv"), row.names = FALSE)
+write.csv(wf.simulation.n.1e4.p.9, file = file.path(path.n.h.p,"wf.simulation.n.1e4.p.9.csv"), row.names = FALSE)
+
+write.csv(x = dat.hw, file = "../data/HW_principle/hw_simulation.csv", row.names = FALSE)
 ```
 
 

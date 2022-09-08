@@ -31,7 +31,11 @@ groundhog.library(pkgs, "2022-09-05")
 # Folder structure --------------------------------------------------------
 cat("Creating folders if needed\n")
 if (basename(getwd()) != "report") {
-  folders = c("output","data",
+  folders = c("output",
+              "data/WF_model",
+              "data/HW_principle",
+              # "data/raw",      # not needed 
+              # "data/cleaned",  # not needed 
               "report/references",
               "report/styles")
   junk <- mapply(FUN = dir.create, 

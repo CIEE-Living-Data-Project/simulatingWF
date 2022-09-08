@@ -1,11 +1,16 @@
 # Description  ------------------------------------------------------------
 ##########################################################################################
 # Wright-Fisher genetic drift model 
+
 # Created by Marc-Olivier Beausoleil
 # McGill University 
+
 # Created 2022-09-07
+
 # Why: 
+  # This file contains R functions to generate genetic drift from Wright-Fisher model and Hardy-Weinberg principle genotype frequencies
 # Requires 
+  # No external requirements. Everything in base R (much faster this way). 
 # NOTES: 
   # modified from http://statisticalrecipes.blogspot.com/2012/02/simulating-genetic-drift.html
   # See also chapter 2 in  Gillespie, J. H. 2004. Population genetics: a concise guide. Second edition. The Johns Hopkins University Press, Baltimore, Maryland. 
