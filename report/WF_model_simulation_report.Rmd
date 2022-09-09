@@ -28,7 +28,7 @@ Population genetics is a field of study interested in the precise mechanisms des
 
 Here is an example of simulation that was made in `R` to show genetic drift without natural selection. The same script, or function, can be used to generate patterns like these, but by varying the parameters (population sizes or starting alleles). 
 
-Each plot below were generated with 100 populations with an allele frequency p of 50% (so q = 0.5) as an initial condition. The only thing that varies from the 4 plots is the number of individuals within each population (note that the random seed is always the same). We can see now see with the simulation that: 
+Each plot below were generated with 100 populations with an allele frequency $p$ of 50% (so $q = 0.5$) as an initial condition. The only thing that varies from the 4 plots is the number of individuals within each population (note that the random seed is always the same). We can see now see with the simulation that: 
 
   * No **particular** allele will be fixated (unbiased);
   * the **number of individuals** seems an important factor in the fixation of alleles. The fluctuations in allele frequency are larger in smaller populations;
