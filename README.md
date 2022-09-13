@@ -34,13 +34,13 @@ If the folder structure is not created, you should run the `0.initialize.R` scri
 
 #### Wright-Fisher simulation
 
-![Wright-Fisher plot 1](report/WF_model_simulation_report_files/figure-html/wf_simulation_varying_n-1.png){width=50%}
-![Wright-Fisher plot 2](report/WF_model_simulation_report_files/figure-html/wf_simulation_n_low_varying_p-1.png){width=50%}
-![Wright-Fisher plot 3](report/WF_model_simulation_report_files/figure-html/wf_simulation_n_hgh_varying_p-1.png){width=50%}
+<img src="report/WF_model_simulation_report_files/figure-html/wf_simulation_varying_n-1.png" width="50%" height="50%">
+<img src="report/WF_model_simulation_report_files/figure-html/wf_simulation_n_low_varying_p-1.png" width="50%" height="50%">
+<img src="report/WF_model_simulation_report_files/figure-html/wf_simulation_n_hgh_varying_p-1.png" width="50%" height="50%">
 
 #### Hardy-Weinberg principle 
 
-![Hardy-Weinberg example](report/WF_model_simulation_report_files/figure-html/hardy_weinber_principle-1.png){width=50%}
+<img src="report/WF_model_simulation_report_files/figure-html/hardy_weinber_principle-1.png" width="50%" height="50%">
  
 ### Licence
 
