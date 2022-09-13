@@ -6,7 +6,7 @@ This repository shows how to simulation of the Wright–Fisher Model (genetic dr
 
 ### OSF 
 
-This project is [hosted on OSF](https://osf.io/mvc8a/).
+This project is [hosted on OSF](https://osf.io/mvc8a/). 
 
 ### Github
 
