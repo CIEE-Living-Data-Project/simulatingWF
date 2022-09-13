@@ -50,6 +50,7 @@ if (basename(getwd()) != "report") {
   cat("Generate session information\n")
   
   dir.create("output/session_info",showWarnings = FALSE)
+  
   sink("output/session_info/session_information.txt", append = FALSE)
   # sink("~/Desktop/session_information.txt",append = FALSE)
   cat("##### R Version Information ############################################################\n")
@@ -59,6 +60,7 @@ if (basename(getwd()) != "report") {
   sessionInfo() 
   # loadedNamespaces()
   sink()
+  
 }
 cat("Done!\n")
 
