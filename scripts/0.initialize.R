@@ -31,36 +31,18 @@ groundhog.library(pkgs, "2022-09-05")
 # Folder structure --------------------------------------------------------
 cat("Creating folders if needed\n")
 if (basename(getwd()) != "report") {
-  folders = c("output",
+  folders = c("output/session_info",
               "data/WF_model",
               "data/HW_principle",
               # "data/raw",      # not needed 
               # "data/cleaned",  # not needed 
               "report/references",
-              "report/styles")
+              "report/styles"
+              )
   junk <- mapply(FUN = dir.create, 
                  path = folders, 
                  showWarnings = FALSE); rm(list = "junk")
 }
 
-
-# Session info ------------------------------------------------------------
-if (basename(getwd()) != "report") {
-  
-  cat("Generate session information\n")
-  
-  dir.create("output/session_info",showWarnings = FALSE)
-  
-  sink("output/session_info/session_information.txt", append = FALSE)
-  # sink("~/Desktop/session_information.txt",append = FALSE)
-  cat("##### R Version Information ############################################################\n")
-  version
-  
-  cat("\n\n##### Collect Information About the Current R Session ############################################################\n\n")
-  sessionInfo() 
-  # loadedNamespaces()
-  sink()
-  
-}
 cat("Done!\n")
 
