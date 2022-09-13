@@ -1,6 +1,8 @@
 # Simulating the Wright-Fisher model in R and Hardy-Weinberg principle of genotype frequencies
 
-This repository shows how to simulation of the Wright–Fisher Model (genetic drift) and plot the Hardy-Weinberg principle. 
+This repository shows how to simulation of the Wright–Fisher Model (genetic drift) and plot the Hardy-Weinberg principle.
+
+The main contributor to this repository is Marc-Olivier Beausoleil (McGill University). 
 
 ## Structure of the project
 
