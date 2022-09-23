@@ -8,7 +8,7 @@ The main contributor to this repository is Marc-Olivier Beausoleil (McGill Unive
 
 ### OSF 
 
-This project is [hosted on OSF](https://osf.io/mvc8a/). 
+This project is [hosted on OSF](https://osf.io/mvc8a/). Feel free to contact me to collaborate! 
 
 ### Github
 
