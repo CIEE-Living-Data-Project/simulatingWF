@@ -16,7 +16,8 @@ If the folder structure is not created, you should run the `0.initialize.R` scri
 
 ### Scripts 
 
- - `scripts/0.initialize.R`: This script is used to load the libraries, session information, and create the folder structure if it is not present. 
+ - `scripts/0.initialize.R`: This script is used to load the libraries, and create the folder structure if it is not present. 
+ - `scripts/1.session.info.R`: This script is used print the session information. 
  - `scripts/WF_genetic_drift_simulation.R`: Contains the WF-model simulation function and the Hardy-Weinberg principle function 
 
 ### Report 
@@ -48,7 +49,7 @@ If the folder structure is not created, you should run the `0.initialize.R` scri
 
  - `LICENSE`: GNU GENERAL PUBLIC LICENSE Version 2
  
- ### Summary of file structure
+### Summary of file structure
 
  ```
   ├── data
@@ -70,4 +71,3 @@ If the folder structure is not created, you should run the `0.initialize.R` scri
   └── simulationWF.Rproj
   [...] Miscellaneous files
 ```
-
