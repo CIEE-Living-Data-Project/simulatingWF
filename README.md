@@ -31,4 +31,25 @@ If the folder structure is not created, you should run the `0.initialize.R` scri
 
  - `LICENSE`: GNU GENERAL PUBLIC LICENSE Version 2
  
- 
+### Summary of file structure
+
+ ```
+  ├── data
+  │   ├── HW_principle
+  │   └── WF_model
+  ├── output
+  │   └── session_info
+  ├── report
+  │   ├── references
+  │   ├── styles
+  │   ├── [...]
+  │   └── WF_model_simulation_report.Rmd
+  ├── scripts 
+  │   ├── 0.1initialize.R
+  │   ├── 1.session.info.R
+  │   └── WF_genetic_drift_simulation.R
+  ├── LICENSE
+  ├── README.md
+  └── simulationWF.Rproj
+  [...] Miscellaneous files
+```
